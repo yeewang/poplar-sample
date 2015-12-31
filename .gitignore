@@ -1,0 +1,7 @@
+platforms/ios/DerivedData/*
+*/xcuserdata/
+platforms/ios/Poplar.xcodeproj/project.xcworkspace/xcuserdata/yiwang.xcuserdatad
+platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
+platforms/ios/Poplar.xcodeproj/xcuserdata
+platforms/ios/Pods/
+platforms/ios/Podfile.lock
