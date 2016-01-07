@@ -64,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Poplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,8 +110,8 @@
 		9DBC75401C35824E00EEF8EF /* VoipConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoipConnection.m; sourceTree = "<group>"; };
 		9DBC75421C3584E600EEF8EF /* XHRSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRSimulator.h; sourceTree = "<group>"; };
 		9DBC75431C3584E600EEF8EF /* XHRSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRSimulator.m; sourceTree = "<group>"; };
-		A191783E4C66C391F8139098 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		A5F3E4B2393C63061CDB5AD1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9DBC75511C370EB100EEF8EF /* PoplarPushDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoplarPushDelegate.h; sourceTree = "<group>"; };
+		9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 				302D95F014D2391D003F00A1 /* MainViewController.xib */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				9DBC75511C370EB100EEF8EF /* PoplarPushDelegate.h */,
 				9DBC753C1C357C6500EEF8EF /* PoplarPush.h */,
 				9DBC753D1C357C6500EEF8EF /* PoplarPush.m */,
 				9DBC75421C3584E600EEF8EF /* XHRSimulator.h */,
@@ -175,7 +177,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				F27506C10733B2491A68055D /* Pods */,
+				4E422F755469D003D151669A /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -267,6 +269,15 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
+		4E422F755469D003D151669A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */,
+				9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,15 +285,6 @@
 				301BF56E109A69640062928A /* www */,
 			);
 			name = Staging;
-			sourceTree = "<group>";
-		};
-		F27506C10733B2491A68055D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A5F3E4B2393C63061CDB5AD1 /* Pods.debug.xcconfig */,
-				A191783E4C66C391F8139098 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,7 +317,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 510;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						SystemCapabilities = {
@@ -476,7 +478,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5F3E4B2393C63061CDB5AD1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -489,18 +491,11 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Poplar/Poplar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					CoreFoundation,
-					"-weak_framework",
-					UIKit,
-					"-weak_framework",
-					AVFoundation,
-					"-weak_framework",
-					CoreMedia,
-					"-weak-lSystem",
-					"-ObjC",
-				);
+				LIBRARY_SEARCH_PATHS = "/sources/devel/poplar/poplar/platforms/ios/DerivedData/Poplar/Build/Products/Debug-iphoneos";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "/sources/devel/poplar/poplar/platforms/ios/DerivedData/Poplar/Build/Products/Debug-iphoneos";
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = "/sources/devel/poplar/poplar/platforms/ios/DerivedData/Poplar/Build/Products/Debug-iphonesimulator";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.botnodes.poplar;
 				PRODUCT_NAME = Poplar;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -508,7 +503,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A191783E4C66C391F8139098 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -519,18 +514,10 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "Poplar/Poplar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					CoreFoundation,
-					"-weak_framework",
-					UIKit,
-					"-weak_framework",
-					AVFoundation,
-					"-weak_framework",
-					CoreMedia,
-					"-weak-lSystem",
-					"-ObjC",
-				);
+				LIBRARY_SEARCH_PATHS = "DerivedData/Poplar/Build/Products/Release-iphoneos";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = "DerivedData/Poplar/Build/Products/Release-iphoneos";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.botnodes.poplar;
 				PRODUCT_NAME = Poplar;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -547,6 +534,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -562,18 +550,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					CoreFoundation,
-					"-weak_framework",
-					UIKit,
-					"-weak_framework",
-					AVFoundation,
-					"-weak_framework",
-					CoreMedia,
-					"-weak-lSystem",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -606,18 +583,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-weak_framework",
-					CoreFoundation,
-					"-weak_framework",
-					UIKit,
-					"-weak_framework",
-					AVFoundation,
-					"-weak_framework",
-					CoreMedia,
-					"-weak-lSystem",
-					"-ObjC",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				USER_HEADER_SEARCH_PATHS = "";

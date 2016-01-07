@@ -28,8 +28,9 @@
 #import <Cordova/CDVViewController.h>
 #import <Cordova/CDVCommandDelegateImpl.h>
 #import <Cordova/CDVCommandQueue.h>
+#import "PoplarPushDelegate.h"
 
-@interface MainViewController : CDVViewController
+@interface MainViewController : CDVViewController <PoplarPushDelegate>
 
 @end
 

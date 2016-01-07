@@ -7,6 +7,7 @@
 //
 
 #import "PoplarPush.h"
+#import "XHRSimulator.h"
 
 
 @implementation PoplarPush
@@ -89,11 +90,21 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
  */
 - (void) fireEvent:(NSString*)event withParams:(NSString*)params
 {
-    
+    /*
     NSString* js = [NSString stringWithFormat:@"setTimeout('%@.%@(%@)',0);",
                     kAPPBackgroundJsNamespace, event, params];
     
     [self.commandDelegate evalJs:js];
+    */
+    
+    
+    XHRSimulator *XHR = [[XHRSimulator alloc] initWithWebView:self.webView];
+    [self didReceiveMessage:[XHR createXHR]];
+}
+
+- (void)didReceiveMessage:(NSString *)message
+{
+    [self.delegate pushSink:self didReceiveMessage:message];
 }
 
 @end

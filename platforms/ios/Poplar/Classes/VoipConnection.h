@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking.h>
 
 @interface VoipConnection : NSObject
 
-- (void)connect;
++ (VoipConnection *)connection;
+- (void)connect:(NSString *)url;
+
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 @end
