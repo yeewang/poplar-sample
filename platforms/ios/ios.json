@@ -4,15 +4,38 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Poplar\"><param name=\"ios-package\" value=\"CDVPoplar\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.botnodes.poplar"
+        },
+        "cordova-plugin-poplar": {
+            "PACKAGE_NAME": "com.botnodes.poplar"
         }
     },
     "dependent_plugins": {},
-    "modules": [],
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-poplar/www/poplar.js",
+            "id": "cordova-plugin-poplar.poplar",
+            "pluginId": "cordova-plugin-poplar",
+            "clobbers": [
+                "poplar"
+            ]
+        }
+    ],
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.0"
     }

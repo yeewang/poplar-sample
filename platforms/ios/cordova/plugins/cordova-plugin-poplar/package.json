@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-poplar",
+  "version": "0.1.0-dev",
+  "description": "Cordova Poplar Plugin",
+  "cordova": {
+    "id": "cordova-plugin-poplar",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+  },
+  "keywords": [
+    "cordova",
+    "poplar",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "author": "Apache Software Foundation",
+  "license": "Apache 2.0"
+}

@@ -34,6 +34,30 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        
+        var success = function(message) {
+            alert(message);
+        }
+        
+        var failure = function() {
+            alert("Error calling Poplar Plugin");
+        }
+        
+        poplar.getInfo(success, failure);
+        poplar.abort(success, failure);
+        
+        var allResponseHeaders = poplar.getAllResponseHeaders(success, failure);
+        
+        var responseHeader = poplar.getResponseHeader(success, failure, "x-allow");
+        
+        // String method;
+        // String url;
+        // boolean async;
+        // String username; String password;
+        poplar.open(success, failure, 'GET', 'http://www.163.com', true, 'Tom', '123456');
+        poplar.send(success, failure, {firstName:"John", lastName:"Doe"});
+        poplar.setRequestHeader(success, failure, "x-allow", "demo-xml");
+        
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
