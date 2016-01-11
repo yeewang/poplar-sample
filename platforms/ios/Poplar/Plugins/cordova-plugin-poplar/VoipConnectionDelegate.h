@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-@class PoplarPush;
+@class VoipConnection;
 
-@protocol PoplarPushDelegate <NSObject>
+@protocol VoipConnectionDelegate <NSObject>
 
 @required
 
-- (void)pushSink:(PoplarPush *)pushSink didReceiveMessage:(NSString *)message;
+- (void)onReadyStateChange:(VoipConnection *)connection;
 
 @end

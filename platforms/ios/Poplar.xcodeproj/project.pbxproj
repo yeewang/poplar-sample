@@ -5,14 +5,13 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
+		2A00F80368334F86B66BA383 /* CDVPoplar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A41ADCD4048458131AD72 /* CDVPoplar.m */; };
 		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
 		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
-		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
 		3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3088BBB7154F3926009F9C59 /* Default-Landscape@2x~ipad.png */; };
 		3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3088BBB8154F3926009F9C59 /* Default-Landscape~ipad.png */; };
 		3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3088BBB9154F3926009F9C59 /* Default-Portrait@2x~ipad.png */; };
@@ -27,7 +26,7 @@
 		30B4F30219D5E07200D9F7D8 /* Default-Landscape-736h.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B4F2FF19D5E07200D9F7D8 /* Default-Landscape-736h.png */; };
 		30C1856619D5FC0A00212699 /* icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C1856519D5FC0A00212699 /* icon-60@3x.png */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		6B70F345ABDB4873B0751EAC /* VoipConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0495D897EF1549E694F7DF44 /* VoipConnection.m */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -38,12 +37,14 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
-		9DBC753E1C357C6500EEF8EF /* PoplarPush.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC753D1C357C6500EEF8EF /* PoplarPush.m */; };
-		9DBC75411C35824E00EEF8EF /* VoipConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC75401C35824E00EEF8EF /* VoipConnection.m */; };
+		9D2BA15C1C440CB7007DFC9B /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
+		9D2BA16C1C440FA8007DFC9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2BA16B1C440FA8007DFC9B /* UIKit.framework */; };
+		9D2BA1701C441008007DFC9B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D2BA15E1C440DA6007DFC9B /* CoreImage.framework */; };
+		9D2BA1711C441026007DFC9B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
+		9D2BA1721C44103F007DFC9B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		9D2BA1731C44105C007DFC9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		9DBC75441C3584E600EEF8EF /* XHRSimulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DBC75431C3584E600EEF8EF /* XHRSimulator.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		FDEBE6E90CF7EEC335744A66 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 911BBE126DF5F9AF32FC88AC /* libPods.a */; };
-		441B5200DEEE47C18CDE656F /* CDVPoplar.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A13B9F0F344AD496C8F226 /* CDVPoplar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0495D897EF1549E694F7DF44 /* VoipConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoipConnection.m; path = "cordova-plugin-poplar/VoipConnection.m"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Poplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +92,8 @@
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Poplar-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Poplar-Prefix.pch"; sourceTree = "<group>"; };
+		3B1A41ADCD4048458131AD72 /* CDVPoplar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVPoplar.m; path = "cordova-plugin-poplar/CDVPoplar.m"; sourceTree = "<group>"; };
+		528209DD51984BEC902F67F0 /* CDVPoplar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVPoplar.h; path = "cordova-plugin-poplar/CDVPoplar.h"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
@@ -103,22 +106,22 @@
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Poplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Poplar-Info.plist"; path = "../Poplar-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		911BBE126DF5F9AF32FC88AC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DBC753C1C357C6500EEF8EF /* PoplarPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoplarPush.h; sourceTree = "<group>"; };
-		9DBC753D1C357C6500EEF8EF /* PoplarPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoplarPush.m; sourceTree = "<group>"; };
-		9DBC753F1C35824E00EEF8EF /* VoipConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoipConnection.h; sourceTree = "<group>"; };
-		9DBC75401C35824E00EEF8EF /* VoipConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoipConnection.m; sourceTree = "<group>"; };
+		9D2BA1561C44094A007DFC9B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9D2BA15A1C440C77007DFC9B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9D2BA15E1C440DA6007DFC9B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		9D2BA1601C440DB5007DFC9B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9D2BA1621C440DBD007DFC9B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9D2BA1641C440E1F007DFC9B /* libAppPatch.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libAppPatch.tbd; path = usr/lib/libAppPatch.tbd; sourceTree = SDKROOT; };
+		9D2BA1691C440EA3007DFC9B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9D2BA16B1C440FA8007DFC9B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9DBC75421C3584E600EEF8EF /* XHRSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRSimulator.h; sourceTree = "<group>"; };
 		9DBC75431C3584E600EEF8EF /* XHRSimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRSimulator.m; sourceTree = "<group>"; };
-		9DBC75511C370EB100EEF8EF /* PoplarPushDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoplarPushDelegate.h; sourceTree = "<group>"; };
-		9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+		F41818922DF2483897BD903D /* VoipConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoipConnection.h; path = "cordova-plugin-poplar/VoipConnection.h"; sourceTree = "<group>"; };
+		F4943043E3134F74A24A0DFD /* VoipConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoipConnectionDelegate.h; path = "cordova-plugin-poplar/VoipConnectionDelegate.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Poplar/config.xml; sourceTree = "<group>"; };
-		E0A13B9F0F344AD496C8F226 /* CDVPoplar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVPoplar.m"; path = "cordova-plugin-poplar/CDVPoplar.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		19FBA7CE0809481B9FDBA11E /* CDVPoplar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVPoplar.h"; path = "cordova-plugin-poplar/CDVPoplar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,11 +129,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
-				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
-				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				FDEBE6E90CF7EEC335744A66 /* libPods.a in Frameworks */,
+				9D2BA1731C44105C007DFC9B /* CoreGraphics.framework in Frameworks */,
+				9D2BA1721C44103F007DFC9B /* AssetsLibrary.framework in Frameworks */,
+				9D2BA1711C441026007DFC9B /* MobileCoreServices.framework in Frameworks */,
+				9D2BA1701C441008007DFC9B /* CoreImage.framework in Frameworks */,
+				9D2BA16C1C440FA8007DFC9B /* UIKit.framework in Frameworks */,
+				9D2BA15C1C440CB7007DFC9B /* libCordova.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,13 +149,8 @@
 				302D95F014D2391D003F00A1 /* MainViewController.xib */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				9DBC75511C370EB100EEF8EF /* PoplarPushDelegate.h */,
-				9DBC753C1C357C6500EEF8EF /* PoplarPush.h */,
-				9DBC753D1C357C6500EEF8EF /* PoplarPush.m */,
 				9DBC75421C3584E600EEF8EF /* XHRSimulator.h */,
 				9DBC75431C3584E600EEF8EF /* XHRSimulator.m */,
-				9DBC753F1C35824E00EEF8EF /* VoipConnection.h */,
-				9DBC75401C35824E00EEF8EF /* VoipConnection.m */,
 			);
 			name = Classes;
 			path = Poplar/Classes;
@@ -170,7 +169,6 @@
 			children = (
 				EB87FDF41871DAF40020F90C /* config.xml */,
 				EB87FDF31871DA8E0020F90C /* www */,
-				EB87FDF21871DA7A0020F90C /* merges */,
 				EB87FDF11871DA420020F90C /* Staging */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -179,7 +177,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				4E422F755469D003D151669A /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -208,10 +205,17 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D2BA16B1C440FA8007DFC9B /* UIKit.framework */,
+				9D2BA1691C440EA3007DFC9B /* CoreText.framework */,
+				9D2BA1641C440E1F007DFC9B /* libAppPatch.tbd */,
+				9D2BA1621C440DBD007DFC9B /* Foundation.framework */,
+				9D2BA1601C440DB5007DFC9B /* CFNetwork.framework */,
+				9D2BA15E1C440DA6007DFC9B /* CoreImage.framework */,
+				9D2BA15A1C440C77007DFC9B /* SystemConfiguration.framework */,
+				9D2BA1561C44094A007DFC9B /* CoreFoundation.framework */,
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
-				911BBE126DF5F9AF32FC88AC /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,8 +231,11 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				E0A13B9F0F344AD496C8F226 /* CDVPoplar.m */,
-				19FBA7CE0809481B9FDBA11E /* CDVPoplar.h */,
+				3B1A41ADCD4048458131AD72 /* CDVPoplar.m */,
+				0495D897EF1549E694F7DF44 /* VoipConnection.m */,
+				528209DD51984BEC902F67F0 /* CDVPoplar.h */,
+				F41818922DF2483897BD903D /* VoipConnection.h */,
+				F4943043E3134F74A24A0DFD /* VoipConnectionDelegate.h */,
 			);
 			name = Plugins;
 			path = Poplar/Plugins;
@@ -273,15 +280,6 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
-		4E422F755469D003D151669A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */,
-				9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		EB87FDF11871DA420020F90C /* Staging */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,12 +296,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Poplar" */;
 			buildPhases = (
-				94FD3A15DA30C461C4133EF6 /* Check Pods Manifest.lock */,
 				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				03A0F712CD7ABC8AD356423F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -408,21 +404,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03A0F712CD7ABC8AD356423F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		304B58A110DAC018002A0835 /* Copy www directory */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -438,21 +419,6 @@
 			shellScript = "NODEJS_PATH=/usr/local/bin; NVM_NODE_PATH=~/.nvm/versions/node/`nvm version 2>/dev/null`/bin; N_NODE_PATH=`find /usr/local/n/versions/node/* -maxdepth 0 -type d 2>/dev/null | tail -1`/bin; XCODE_NODE_PATH=`xcode-select --print-path`/usr/share/xcs/Node/bin; PATH=$NODEJS_PATH:$NVM_NODE_PATH:$N_NODE_PATH:$XCODE_NODE_PATH:$PATH && node cordova/lib/copy-www-build-step.js";
 			showEnvVarsInLog = 0;
 		};
-		94FD3A15DA30C461C4133EF6 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -461,12 +427,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				9DBC753E1C357C6500EEF8EF /* PoplarPush.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				9DBC75441C3584E600EEF8EF /* XHRSimulator.m in Sources */,
-				9DBC75411C35824E00EEF8EF /* VoipConnection.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				441B5200DEEE47C18CDE656F /* CDVPoplar.m in Sources */,
+				2A00F80368334F86B66BA383 /* CDVPoplar.m in Sources */,
+				6B70F345ABDB4873B0751EAC /* VoipConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +448,6 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19E7147A5D4CC288AB4C05D9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -508,7 +472,6 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F6828D45D037FA15BD9E5EC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;

@@ -23,50 +23,128 @@
 
 #import <Cordova/CDV.h>
 #import "CDVPoplar.h"
+#import "VoipConnection.h"
+#import "VoipConnectionDelegate.h"
 
 @interface CDVPoplar () {}
+@property (nonatomic, strong) VoipConnection *voipConnection;
 @end
 
 @implementation CDVPoplar
 
-- (NSString*)uniqueAppInstanceIdentifier:(UIPoplar*)device
+NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.PoplarPush";
+NSString *const kAPPBackgroundEventSuspended = @"inSuspendedState";
+NSString *const kAPPBackgroundEventDidEnterBackground = @"didEnterBackground";
+NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
+
+#pragma mark -
+#pragma mark Initialization methods
+
+/**
+ * Initialize the plugin.
+ */
+- (void) pluginInitialize
 {
-    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    static NSString* UUID_KEY = @"CDVUUID";
+    self.voipConnection = [VoipConnection connection];
+    self.voipConnection.delegate = self;
+    [self observeLifeCycle];
+}
+
+/**
+ * Register the listener for pause and resume events.
+ */
+- (void) observeLifeCycle
+{
+    NSNotificationCenter* listener = [NSNotificationCenter defaultCenter];
     
-    // Check user defaults first to maintain backwards compaitibility with previous versions
-    // which didn't user identifierForVendor
-    NSString* app_uuid = [userDefaults stringForKey:UUID_KEY];
-    if (app_uuid == nil) {
-        app_uuid = @"xxxxxx";
-        [userDefaults setObject:app_uuid forKey:UUID_KEY];
-        [userDefaults synchronize];
+    if (&UIApplicationDidEnterBackgroundNotification && &UIApplicationWillEnterForegroundNotification) {
+        
+        [listener addObserver:self
+                     selector:@selector(applicationDidEnterBackground:)
+                         name:UIApplicationDidEnterBackgroundNotification
+                       object:nil];
+        
+        [listener addObserver:self
+                     selector:@selector(applicationWillEnterForeground:)
+                         name:UIApplicationWillEnterForegroundNotification
+                       object:nil];
+        
+    } else {
+        
+        //Do something else
     }
+}
+
+
+- (void)applicationDidEnterBackground:(NSNotification *) notification
+{
     
-    return app_uuid;
+    BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{
+        [self backgroundHandler]; }];
+    if (backgroundAccepted) {
+        [self fireEvent:kAPPBackgroundEventDidEnterBackground withParams:NULL];
+        NSLog(@"VOIP backgrounding accepted for the App");
+    } else {
+        NSLog(@"VOIP backgrounding NOT accepted for the App");
+    }
+}
+
+- (void)applicationWillEnterForeground:(NSNotification *) notification
+{
+    [[UIApplication sharedApplication] clearKeepAliveTimeout];
+    
+    [self fireEvent:kAPPBackgroundEventWillEnterForeground withParams:NULL];
+    
+    NSLog(@"App will enter foreground");
+}
+
+- (void)backgroundHandler {
+    
+    NSLog(@"### -->VOIP backgrounding callback"); // What to do here to extend timeout?
+    
+    [self fireEvent:kAPPBackgroundEventSuspended withParams:NULL];
+}
+
+
+/**
+ * Method to fire an event with some parameters in the browser.
+ */
+- (void) fireEvent:(NSString*)event withParams:(NSString*)params
+{
+    /*
+     NSString* js = [NSString stringWithFormat:@"setTimeout('%@.%@(%@)',0);",
+     kAPPBackgroundJsNamespace, event, params];
+     
+     [self.commandDelegate evalJs:js];
+     */
+    
+    
+//    XHRSimulator *XHR = [[XHRSimulator alloc] initWithWebView:self.webView];
+//    [self didReceiveMessage:[XHR createXHR]];
+}
+
+- (void)didReceiveMessage:(NSString *)message
+{
+//    [self.delegate pushSink:self didReceiveMessage:message];
 }
 
 - (void)getPoplarInfo:(CDVInvokedUrlCommand*)command
 {
-    NSDictionary* deviceProperties = [self deviceProperties];
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:deviceProperties];
+    NSDictionary* poplarProperties = [self poplarProperties];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:poplarProperties];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (NSDictionary*)deviceProperties
+- (NSDictionary*)poplarProperties
 {
-    UIPoplar* device = [UIPoplar currentPoplar];
-    NSMutableDictionary* devProps = [NSMutableDictionary dictionaryWithCapacity:4];
-
-    [devProps setObject:@"Apple" forKey:@"manufacturer"];
-    [devProps setObject:[device modelVersion] forKey:@"model"];
-    [devProps setObject:@"iOS" forKey:@"platform"];
-    [devProps setObject:[device systemVersion] forKey:@"version"];
-    [devProps setObject:[self uniqueAppInstanceIdentifier:device] forKey:@"uuid"];
-    [devProps setObject:[[self class] cordovaVersion] forKey:@"cordova"];
-    [devProps setObject:@([self isVirtual]) forKey:@"isVirtual"];
-    NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:devProps];
+    NSMutableDictionary* poplarProps = [NSMutableDictionary dictionaryWithCapacity:4];
+    poplarProps[@"readyState"] = [NSNumber numberWithInt:0];
+    poplarProps[@"responseText"] = @"";
+    poplarProps[@"responseXML"] = @"";
+    poplarProps[@"status"] = @"200";
+    poplarProps[@"statusText"] = @"200";
+    NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:poplarProps];
     return devReturn;
 }
 
@@ -75,15 +153,70 @@
     return CDV_VERSION;
 }
 
-- (BOOL)isVirtual
+- (void)abort:(CDVInvokedUrlCommand*)command
 {
-    #if TARGET_OS_SIMULATOR
-        return true;
-    #elif TARGET_IPHONE_SIMULATOR
-        return true;
-    #else
-        return false;
-    #endif
+    [_voipConnection abort];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"abort"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)getAllResponseHeaders:(CDVInvokedUrlCommand*)command
+{
+    NSString * allHeaders = [_voipConnection getAllResponseHeaders];;
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:allHeaders];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)getResponseHeader:(CDVInvokedUrlCommand*)command
+{
+    NSString* header = [command.arguments objectAtIndex:0];
+    NSString *reponseHeader = [_voipConnection getResponseHeader:header];
+    NSString *message = reponseHeader;
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: message];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)open:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString *methodName = options[@"method"];
+    NSString *url = options[@"url"];
+    BOOL async = [options[@"async"] boolValue];
+    NSString *username = options[@"username"];
+    NSString *password = options[@"password"];
+    
+    [_voipConnection open:methodName url:url async:async username:username password:password];
+    
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"open"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)send:(CDVInvokedUrlCommand*)command
+{
+    id body = [command.arguments objectAtIndex:0];
+    
+    [_voipConnection sendWithBody:body];
+    
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"send"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)setRequestHeader:(CDVInvokedUrlCommand*)command
+{
+    NSDictionary* options = [command.arguments objectAtIndex:0];
+    NSString *name = options[@"name"];
+    NSString *value = options[@"value"];
+    
+    [_voipConnection setRequestHeaderWithName:name value:value];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"setRequestHeader"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+#pragma mark - delegate
+
+- (void)onReadyStateChange:(VoipConnection *)connection
+{
+    [self.commandDelegate evalJs:@"poplar.onreadystatechange()"];
 }
 
 @end

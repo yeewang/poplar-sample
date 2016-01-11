@@ -41,6 +41,9 @@
 
         <header-file src="src/ios/CDVPoplar.h" />
         <source-file src="src/ios/CDVPoplar.m" />
+        <header-file src="src/ios/VoipConnection.h" />
+        <source-file src="src/ios/VoipConnection.m" />
+        <header-file src="src/ios/VoipConnectionDelegate.h" />
     </platform>
 
 </plugin>

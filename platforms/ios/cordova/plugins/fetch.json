@@ -1,0 +1,10 @@
+{
+    "cordova-plugin-poplar": {
+        "source": {
+            "type": "local",
+            "path": "../plugins/cordova-plugin-poplar"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

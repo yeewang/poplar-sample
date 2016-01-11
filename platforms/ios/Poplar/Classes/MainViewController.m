@@ -25,11 +25,9 @@
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
-#import "PoplarPush.h"
 #import "MainViewController.h"
 
 @interface MainViewController ()
-@property (nonatomic, strong) PoplarPush *pushSink;
 @end
 
 @implementation MainViewController
@@ -55,9 +53,9 @@
         // Uncomment to override the CDVCommandQueue used
         // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
         
-        self.pushSink = [[PoplarPush alloc] init];
-        _pushSink.delegate = self;
-        [_pushSink pluginInitialize];
+//        self.pushSink = [[PoplarPush alloc] init];
+//        _pushSink.delegate = self;
+//        [_pushSink pluginInitialize];
     }
     return self;
 }
@@ -140,13 +138,6 @@
     return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 */
-
-#pragma mark - delegate
-
-- (void)pushSink:(PoplarPush *)sink didReceiveMessage:(NSString *)message
-{
-    [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"alert('%@')", message]];
-}
 
 @end
 

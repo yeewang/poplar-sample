@@ -19,9 +19,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Cordova/CDVPlugin.h>
+#import "VoipConnectionDelegate.h"
 
-@interface CDVPoplar : CDVPlugin
-{}
+@interface CDVPoplar : CDVPlugin <VoipConnectionDelegate>
 
 + (NSString*)cordovaVersion;
 
