@@ -63,6 +63,13 @@
  */
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    // Regsiter notification
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:
+                                            UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound
+                                                                             categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+    
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
 
 #if __has_feature(objc_arc)
@@ -111,6 +118,17 @@
 {
     // re-post ( broadcast )
     [[NSNotificationCenter defaultCenter] postNotificationName:CDVLocalNotification object:notification];
+    
+    // 
+    UIApplicationState state = application.applicationState;
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message Received"
+                                                        message:notification.alertBody
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #ifndef DISABLE_PUSH_NOTIFICATIONS

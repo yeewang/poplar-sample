@@ -75,10 +75,10 @@ Poplar.prototype.getInfo = function(successCallback, errorCallback) {
         return;
     }
     
-    argscheck.checkArgs('fF', 'Poplar.getInfo', arguments);
-    exec(successCallback, errorCallback, "Poplar", "getPoplarInfo");
+               //argscheck.checkArgs('fF', 'Poplar.getInfo', arguments);
+    exec(successCallback, errorCallback, "Poplar", "getInfo");
 };
-               
+
 Poplar.prototype.abort = function(successCallback, errorCallback) {
     if (!errorCallback) { errorCallback = function() {}; }
     

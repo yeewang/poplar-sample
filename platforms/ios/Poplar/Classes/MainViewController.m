@@ -52,10 +52,6 @@
         // _commandDelegate = [[MainCommandDelegate alloc] initWithViewController:self];
         // Uncomment to override the CDVCommandQueue used
         // _commandQueue = [[MainCommandQueue alloc] initWithViewController:self];
-        
-//        self.pushSink = [[PoplarPush alloc] init];
-//        _pushSink.delegate = self;
-//        [_pushSink pluginInitialize];
     }
     return self;
 }
@@ -114,9 +110,6 @@
     theWebView.backgroundColor = [UIColor blackColor];
 
     [super webViewDidFinishLoad:theWebView];
-    
-    // Get cookies
-    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
 }
 
 /* Comment out the block below to over-ride */

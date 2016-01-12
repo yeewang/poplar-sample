@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking.h>
 #import "VoipConnectionDelegate.h"
 
 @interface VoipConnection : NSObject
@@ -25,11 +24,10 @@
 - (void)abort;
 
 @property (nonatomic, assign) id<VoipConnectionDelegate> delegate;
-@property (readonly, nonatomic, assign) int state;
-@property (readonly, nonatomic, assign) short readyState;
-@property (readonly, nonatomic, strong) NSString* responseText;
-@property (readonly, nonatomic, strong) NSString* responseXML;
-@property (readonly, nonatomic, assign) short status;
-@property (readonly, nonatomic, strong) NSString* statusText;
+@property (nonatomic, assign) short readyState;
+@property (nonatomic, strong) NSString* responseText;
+@property (nonatomic, strong) NSString* responseXML;
+@property (nonatomic, assign) short status;
+@property (nonatomic, strong) NSString* statusText;
 
 @end

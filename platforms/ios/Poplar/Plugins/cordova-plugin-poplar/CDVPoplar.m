@@ -32,7 +32,7 @@
 
 @implementation CDVPoplar
 
-NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.PoplarPush";
+NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.poplar";
 NSString *const kAPPBackgroundEventSuspended = @"inSuspendedState";
 NSString *const kAPPBackgroundEventDidEnterBackground = @"didEnterBackground";
 NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
@@ -78,7 +78,7 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 - (void)applicationDidEnterBackground:(NSNotification *) notification
 {
-    // "setKeepAliveTimeout" has been Deprecated in iOS 9.0.
+    // setKeepAliveTimeout has been deprecated in iOS9
     BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{
         [self backgroundHandler]; }];
     if (backgroundAccepted) {
@@ -98,7 +98,7 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
     NSLog(@"App will enter foreground");
 }
 
-// iOS
+// The setKeepAliveTimeout has been deprecated in iOS9, so this function could not be invoked in iOS9.
 - (void)backgroundHandler {
     
     NSLog(@"### -->VOIP backgrounding callback"); // What to do here to extend timeout?
@@ -117,7 +117,7 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
      [self.commandDelegate evalJs:js];
 }
 
-- (void)getPoplarInfo:(CDVInvokedUrlCommand*)command
+- (void)getInfo:(CDVInvokedUrlCommand*)command
 {
     NSDictionary* poplarProperties = [self poplarProperties];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:poplarProperties];
@@ -206,17 +206,27 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 - (void)onReadyStateChange:(VoipConnection *)connection
 {
     NSString * js =[NSString stringWithFormat:@"poplar.readyState = %d;\n"
-                    "poplar.responseText = \"length:%ld bytes\";\n"
+                    "poplar.responseText = \"%@\";\n"
                     "poplar.responseXML = \"%@\";\n"
                     "poplar.status = %d;\n"
                     "poplar.statusText = \"%@\";\n"
                     "poplar.onreadystatechange();\n",
                     _voipConnection.readyState,
-                    [_voipConnection.responseText length],
+                    _voipConnection.responseText,
                     _voipConnection.responseXML == nil ? @"null":_voipConnection.responseXML,
                     _voipConnection.status,
                     _voipConnection.statusText == nil ? @"null":_voipConnection.statusText];
     [self.commandDelegate evalJs:js];
+    
+    if (_voipConnection.readyState == 4) {
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.fireDate = [NSDate date];
+        notification.alertBody = _voipConnection.responseText;
+        notification.timeZone = [NSTimeZone defaultTimeZone];
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        notification.applicationIconBadgeNumber = 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
 }
 
 @end

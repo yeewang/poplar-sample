@@ -111,21 +111,10 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
  */
 - (void) fireEvent:(NSString*)event withParams:(NSString*)params
 {
-    /*
      NSString* js = [NSString stringWithFormat:@"setTimeout('%@.%@(%@)',0);",
      kAPPBackgroundJsNamespace, event, params];
      
      [self.commandDelegate evalJs:js];
-     */
-    
-    
-//    XHRSimulator *XHR = [[XHRSimulator alloc] initWithWebView:self.webView];
-//    [self didReceiveMessage:[XHR createXHR]];
-}
-
-- (void)didReceiveMessage:(NSString *)message
-{
-//    [self.delegate pushSink:self didReceiveMessage:message];
 }
 
 - (void)getPoplarInfo:(CDVInvokedUrlCommand*)command
@@ -139,11 +128,11 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 - (NSDictionary*)poplarProperties
 {
     NSMutableDictionary* poplarProps = [NSMutableDictionary dictionaryWithCapacity:4];
-    poplarProps[@"readyState"] = [NSNumber numberWithInt:0];
-    poplarProps[@"responseText"] = @"";
-    poplarProps[@"responseXML"] = @"";
-    poplarProps[@"status"] = @"200";
-    poplarProps[@"statusText"] = @"200";
+    poplarProps[@"readyState"] = [NSNumber numberWithInt:[_voipConnection readyState]];
+    poplarProps[@"responseText"] = [_voipConnection responseText];
+    poplarProps[@"responseXML"] = [_voipConnection responseXML];
+    poplarProps[@"status"] = [NSNumber numberWithInt:[_voipConnection status]];
+    poplarProps[@"statusText"] = [_voipConnection statusText];
     NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:poplarProps];
     return devReturn;
 }
@@ -216,7 +205,18 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 - (void)onReadyStateChange:(VoipConnection *)connection
 {
-    [self.commandDelegate evalJs:@"poplar.onreadystatechange()"];
+    NSString * js =[NSString stringWithFormat:@"poplar.readyState = %d;\n"
+                    "poplar.responseText = \"length:%ld bytes\";\n"
+                    "poplar.responseXML = \"%@\";\n"
+                    "poplar.status = %d;\n"
+                    "poplar.statusText = \"%@\";\n"
+                    "poplar.onreadystatechange();\n",
+                    _voipConnection.readyState,
+                    [_voipConnection.responseText length],
+                    _voipConnection.responseXML == nil ? @"null":_voipConnection.responseXML,
+                    _voipConnection.status,
+                    _voipConnection.statusText == nil ? @"null":_voipConnection.statusText];
+    [self.commandDelegate evalJs:js];
 }
 
 @end
