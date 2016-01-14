@@ -66,29 +66,29 @@ Poplar.prototype.getInfo = function(successCallback, errorCallback) {
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.getInfo failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.getInfo failure: success callback parameter must be a function');
         return;
     }
     
-               //argscheck.checkArgs('fF', 'Poplar.getInfo', arguments);
+    argscheck.checkArgs('fF', 'Poplar.getInfo', arguments);
     exec(successCallback, errorCallback, "Poplar", "getInfo");
 };
-
+               
 Poplar.prototype.abort = function(successCallback, errorCallback) {
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.abort failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.abort failure: success callback parameter must be a function');
         return;
     }
     
@@ -100,12 +100,12 @@ Poplar.prototype.getAllResponseHeaders = function(successCallback, errorCallback
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.getAllResponseHeaders failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.getAllResponseHeaders failure: success callback parameter must be a function');
         return;
     }
     
@@ -129,12 +129,12 @@ Poplar.prototype.getResponseHeader = function(successCallback, errorCallback, he
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.getResponseHeader failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.getResponseHeader failure: success callback parameter must be a function');
         return;
     }
     
@@ -182,12 +182,12 @@ Poplar.prototype.send = function(successCallback, errorCallback, options) {
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.send failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.send failure: success callback parameter must be a function');
         return;
     }
     
@@ -199,18 +199,35 @@ Poplar.prototype.setRequestHeader = function(successCallback, errorCallback, nam
     if (!errorCallback) { errorCallback = function() {}; }
     
     if (typeof errorCallback !== 'function')  {
-        console.log('Poplar.prototype.open failure: failure parameter not a function');
+        console.log('Poplar.prototype.setRequestHeader failure: failure parameter not a function');
         return;
     }
     
     if (typeof successCallback !== 'function') {
-        console.log('Poplar.prototype.open failure: success callback parameter must be a function');
+        console.log('Poplar.prototype.setRequestHeader failure: success callback parameter must be a function');
         return;
     }
     
     argscheck.checkArgs('fF', 'Poplar.setRequestHeader', arguments);
     options = {'name' :name, 'value': value};
     exec(successCallback, errorCallback, "Poplar", "setRequestHeader", [options]);
+};
+
+Poplar.prototype.setTimeout = function(successCallback, errorCallback, timeout) {
+    if (!errorCallback) { errorCallback = function() {}; }
+
+    if (typeof errorCallback !== 'function')  {
+        console.log('Poplar.prototype.setTimeout failure: failure parameter not a function');
+        return;
+    }
+
+    if (typeof successCallback !== 'function') {
+        console.log('Poplar.prototype.setTimeout failure: success callback parameter must be a function');
+        return;
+    }
+
+    argscheck.checkArgs('fF', 'Poplar.setTimeout', arguments);
+    exec(successCallback, errorCallback, "Poplar", "setTimeout", [timeout]);
 };
 
 module.exports = new Poplar();

@@ -11,6 +11,7 @@
 @interface VoipConnection ()
 @property (nonatomic, strong) NSString * url;
 @property (nonatomic, assign) BOOL async;
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
 @property (nonatomic, strong) NSString * requestHeaders;
 @property (nonatomic, strong) NSMutableURLRequest *request;
 @property (nonatomic, strong) NSURLSession *session;
@@ -41,6 +42,7 @@
 
 - (void)resetDefault
 {
+    _timeoutInterval = 240;
     _readyState = 0;
     _responseText = nil;
     _responseXML = nil;
@@ -75,9 +77,13 @@
         [_request setNetworkServiceType:(NSURLNetworkServiceTypeVoIP)];
         [_request setHTTPMethod:method];
         [_request setHTTPShouldHandleCookies:YES];
-        [_request setTimeoutInterval:3600 * 24];
-        //        [_request setValue:@"VALUE" forHTTPHeaderField:@"cookie"];
-        //        [_request setValue:@"VALUE" forHTTPHeaderField:@"User-Agent"];
+        [_request setTimeoutInterval:_timeoutInterval];
+        
+        NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        NSDictionary* headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+        [_request setAllHTTPHeaderFields:headers];
+
+        // [_request setValue:@"VALUE" forHTTPHeaderField:@"User-Agent"];
         
         if (username != nil && password != nil) {
             //[[_manager requestSerializer] setAuthorizationHeaderFieldWithUsername:username password:password];
@@ -105,7 +111,7 @@
         self.session = [NSURLSession sharedSession];
         self.dataTask = [self.session dataTaskWithRequest:_request
                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                            NSLog(@"Response %lld content with %@\n", [response expectedContentLength], error);
+                                            NSLog(@"Received %lld bytes content\n", [response expectedContentLength]);
                                             
                                             NSString* s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                             self.responseText = s;
@@ -124,6 +130,10 @@
                                             _readyState = 4;
                                             [self.delegate onReadyStateChange:self];
                                             dispatch_semaphore_signal(semaphore);
+                                            
+                                            // Continue to perform send HTTP GET
+                                            //_readyState = 1;
+                                            //[self performSelectorInBackground:@selector(sendWithBody:) withObject:body];
                                         }];
         [self.dataTask resume];
         
@@ -170,6 +180,14 @@
     [self.dataTask cancel];
     _readyState = 0;
     [self.delegate onReadyStateChange:self];
+}
+
+- (void)setTimeout:(NSTimeInterval)timeoutInterval
+{
+    if (_readyState == 0 || _readyState == 1 || _readyState == 4) {
+        _timeoutInterval = timeoutInterval;
+        [self.request setTimeoutInterval:timeoutInterval];
+    }
 }
 
 @end

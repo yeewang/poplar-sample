@@ -25,6 +25,6 @@
 
 + (NSString*)cordovaVersion;
 
-- (void)getPoplarInfo:(CDVInvokedUrlCommand*)command;
+- (void)getInfo:(CDVInvokedUrlCommand*)command;
 
 @end

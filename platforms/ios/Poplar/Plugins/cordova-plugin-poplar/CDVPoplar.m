@@ -201,6 +201,15 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)setTimeout:(CDVInvokedUrlCommand*)command
+{
+    NSNumber* timeout = [command.arguments objectAtIndex:0];
+    
+    [_voipConnection setTimeout:[timeout doubleValue]];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"setTimeout"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 #pragma mark - delegate
 
 - (void)onReadyStateChange:(VoipConnection *)connection

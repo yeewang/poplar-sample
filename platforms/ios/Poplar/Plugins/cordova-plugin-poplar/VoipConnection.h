@@ -22,6 +22,7 @@
 - (NSString *)getAllResponseHeaders;
 - (NSString *)getResponseHeader:(NSString *)header;
 - (void)abort;
+- (void)setTimeout:(NSTimeInterval)timeInterval;
 
 @property (nonatomic, assign) id<VoipConnectionDelegate> delegate;
 @property (nonatomic, assign) short readyState;

@@ -11,6 +11,7 @@
 @interface VoipConnection ()
 @property (nonatomic, strong) NSString * url;
 @property (nonatomic, assign) BOOL async;
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
 @property (nonatomic, strong) NSString * requestHeaders;
 @property (nonatomic, strong) NSMutableURLRequest *request;
 @property (nonatomic, strong) NSURLSession *session;
@@ -41,6 +42,7 @@
 
 - (void)resetDefault
 {
+    _timeoutInterval = 240;
     _readyState = 0;
     _responseText = nil;
     _responseXML = nil;
@@ -75,7 +77,7 @@
         [_request setNetworkServiceType:(NSURLNetworkServiceTypeVoIP)];
         [_request setHTTPMethod:method];
         [_request setHTTPShouldHandleCookies:YES];
-        [_request setTimeoutInterval:3600 * 24];
+        [_request setTimeoutInterval:_timeoutInterval];
         
         NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         NSDictionary* headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
@@ -122,7 +124,12 @@
                                                 self.statusText = @"Not Found";
                                             }
                                             else {
-                                                self.statusText = @"Unknown";
+                                                if ([error code] == kCFURLErrorTimedOut) {
+                                                    self.status = -1;
+                                                    self.statusText = @"Timeout";
+                                                }
+                                                else
+                                                    self.statusText = @"Unknown";
                                             }
                                             
                                             _readyState = 4;
@@ -178,6 +185,14 @@
     [self.dataTask cancel];
     _readyState = 0;
     [self.delegate onReadyStateChange:self];
+}
+
+- (void)setTimeout:(NSTimeInterval)timeoutInterval
+{
+    if (_readyState == 0 || _readyState == 1 || _readyState == 4) {
+        _timeoutInterval = timeoutInterval;
+        [self.request setTimeoutInterval:timeoutInterval];
+    }
 }
 
 @end

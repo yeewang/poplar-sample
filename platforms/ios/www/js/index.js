@@ -56,7 +56,7 @@ var app = {
             document.write(message);
 
             if (poplar.readyState === 4) {
-                poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=30', true);
+                poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=10', true);
                 poplar.send(success, failure);
             }
         };
@@ -77,10 +77,11 @@ var app = {
         // String url;
         // boolean async;
         // String username; String password;
-        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=10', true);
+        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=30', true);
         //poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_close.call', true);
         //poplar.open(success, failure, 'GET', 'http://www.163.com/', true);
         poplar.setRequestHeader(success, failure, "x-allow", "demo-xml");
+        poplar.setTimeout(success, failure, 60);
         poplar.send(success, failure);
     },
     // Update DOM on a Received Event
