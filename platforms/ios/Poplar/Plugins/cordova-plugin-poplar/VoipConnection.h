@@ -11,7 +11,6 @@
 
 @interface VoipConnection : NSObject
 
-+ (VoipConnection *)connection;
 - (void)open:(NSString *)method
          url:(NSString *)url
        async:(BOOL)async

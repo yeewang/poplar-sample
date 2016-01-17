@@ -45,8 +45,6 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
  */
 - (void) pluginInitialize
 {
-    self.voipConnection = [VoipConnection connection];
-    self.voipConnection.delegate = self;
     [self observeLifeCycle];
 }
 
@@ -142,6 +140,14 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
     return CDV_VERSION;
 }
 
+- (void)init:(CDVInvokedUrlCommand*)command
+{
+    self.voipConnection = [[VoipConnection alloc] init];
+    self.voipConnection.delegate = self;
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"init"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)abort:(CDVInvokedUrlCommand*)command
 {
     [_voipConnection abort];
@@ -214,12 +220,13 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 - (void)onReadyStateChange:(VoipConnection *)connection
 {
-    NSString * js =[NSString stringWithFormat:@"poplar.readyState = %d;\n"
-                    "poplar.responseText = \"%@\";\n"
-                    "poplar.responseXML = \"%@\";\n"
-                    "poplar.status = %d;\n"
-                    "poplar.statusText = \"%@\";\n"
-                    "poplar.onreadystatechange();\n",
+    NSString * js =[NSString stringWithFormat:@"var me = window.poplar;\n"
+                    "me.readyState = %d;\n"
+                    "me.responseText = \"%@\";\n"
+                    "me.responseXML = \"%@\";\n"
+                    "me.status = %d;\n"
+                    "me.statusText = \"%@\";\n"
+                    "me.onreadystatechange();\n",
                     _voipConnection.readyState,
                     _voipConnection.responseText,
                     _voipConnection.responseXML == nil ? @"null":_voipConnection.responseXML,
