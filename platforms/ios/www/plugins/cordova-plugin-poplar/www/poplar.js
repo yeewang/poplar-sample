@@ -223,6 +223,6 @@ Poplar.prototype.setTimeout = function(successCallback, errorCallback, timeout) 
     exec(successCallback, errorCallback, "Poplar", "setTimeout", [timeout]);
 };
 
-module.exports = Poplar();
+module.exports = new Poplar();
 
 });

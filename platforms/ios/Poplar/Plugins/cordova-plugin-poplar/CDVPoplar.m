@@ -220,7 +220,7 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 - (void)onReadyStateChange:(VoipConnection *)connection
 {
-    NSString * js =[NSString stringWithFormat:@"var me = window.poplar;\n"
+    NSString * js =[NSString stringWithFormat:@"var me = poplar;\n"
                     "me.readyState = %d;\n"
                     "me.responseText = \"%@\";\n"
                     "me.responseXML = \"%@\";\n"

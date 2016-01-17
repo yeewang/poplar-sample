@@ -35,8 +35,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-
-        var poplar = new Poplar();
         
         var success = function(message) {
             document.write("<font size=5>Result:</font>" + message + "<br>");
@@ -46,8 +44,6 @@ var app = {
             alert("Error calling Poplar Plugin");
         }
         
-        window.poplar = poplar;
-
         poplar.onreadystatechange = function() {
             var message = "<font size=5>onreadystatechange</font><br>";
             message = message.concat(
