@@ -21,6 +21,17 @@
 
 @implementation VoipConnection
 
++ (VoipConnection *)connection
+{
+    static VoipConnection * conn = nil;
+    @synchronized(conn) {
+        if (conn == nil) {
+            conn = [[VoipConnection alloc] init];
+        }
+    }
+    return conn;
+}
+
 - (VoipConnection *)init
 {    
     self = [super init];

@@ -45,6 +45,8 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
  */
 - (void) pluginInitialize
 {
+    self.voipConnection = [VoipConnection connection];
+    self.voipConnection.delegate = self;
     [self observeLifeCycle];
 }
 
@@ -142,8 +144,6 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 - (void)init:(CDVInvokedUrlCommand*)command
 {
-    self.voipConnection = [[VoipConnection alloc] init];
-    self.voipConnection.delegate = self;
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString: @"init"];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
