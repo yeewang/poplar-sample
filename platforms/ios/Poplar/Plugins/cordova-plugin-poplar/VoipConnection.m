@@ -85,6 +85,7 @@
         [_request setAllHTTPHeaderFields:headers];
 
         // [_request setValue:@"VALUE" forHTTPHeaderField:@"User-Agent"];
+        [_request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         
         if (username != nil && password != nil) {
             //[[_manager requestSerializer] setAuthorizationHeaderFieldWithUsername:username password:password];

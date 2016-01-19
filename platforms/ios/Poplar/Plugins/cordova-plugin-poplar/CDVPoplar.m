@@ -6,9 +6,9 @@
  to you under the Apache License, Version 2.0 (the
  "License"); you may not use this file except in compliance
  with the License.  You may obtain a copy of the License at
-
+ 
  http://www.apache.org/licenses/LICENSE-2.0
-
+ 
  Unless required by applicable law or agreed to in writing,
  software distributed under the License is distributed on an
  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -32,10 +32,10 @@
 
 @implementation CDVPoplar
 
-NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.poplar";
-NSString *const kAPPBackgroundEventSuspended = @"inSuspendedState";
-NSString *const kAPPBackgroundEventDidEnterBackground = @"didEnterBackground";
-NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
+static NSString *const kAPPBackgroundJsNamespace = @"cordova.plugins.poplar";
+static NSString *const kAPPBackgroundEventSuspended = @"inSuspendedState";
+static NSString *const kAPPBackgroundEventDidEnterBackground = @"didEnterBackground";
+static NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
 
 #pragma mark -
 #pragma mark Initialization methods
@@ -111,17 +111,17 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
  */
 - (void) fireEvent:(NSString*)event withParams:(NSString*)params
 {
-     NSString* js = [NSString stringWithFormat:@"setTimeout('%@.%@(%@)',0);",
-     kAPPBackgroundJsNamespace, event, params];
-     
-     [self.commandDelegate evalJs:js];
+    NSString* js = [NSString stringWithFormat:@"setTimeout('%@.%@(%@)',0);",
+                    kAPPBackgroundJsNamespace, event, params];
+
+    [self.commandDelegate evalJs:js];
 }
 
 - (void)getInfo:(CDVInvokedUrlCommand*)command
 {
     NSDictionary* poplarProperties = [self poplarProperties];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:poplarProperties];
-
+    
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
@@ -236,6 +236,7 @@ NSString *const kAPPBackgroundEventWillEnterForeground = @"willEnterForeground";
     
     if (_voipConnection.readyState == 4) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
+        [notification setUserInfo:@{@"Poplar" : @"Notification"}];
         notification.fireDate = [NSDate date];
         notification.alertBody = _voipConnection.responseText;
         notification.timeZone = [NSTimeZone defaultTimeZone];
