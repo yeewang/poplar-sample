@@ -221,32 +221,45 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
 - (NSString*)escapeJsString:(NSString*)js
 {
     if ([js isKindOfClass:[NSNull class]])
-        return @"null";
-    js = [js stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    js = [js stringByReplacingOccurrencesOfString:@"\'" withString:@"\\\'"];
-    js = [js stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-    js = [js stringByReplacingOccurrencesOfString:@"\r" withString:@"\\\r"];
-    js = [js stringByReplacingOccurrencesOfString:@"\n" withString:@"\\\n"];
-    return js;
+        js = @"";
+    
+    NSMutableString* text = [[NSMutableString alloc] initWithCapacity:[js length] * 2];
+    [text appendString:@"\""];
+    for (NSUInteger i = 0; i < [js length]; i++) {
+        unichar c = [js characterAtIndex:i];
+        switch (c) {
+        case '"':
+            [text appendString:@"\\\""];
+            break;
+        case '\r':
+            [text appendString:@"\\\r"];
+            break;
+        case '\n':
+            [text appendString:@"\\\n"];
+            break;
+        default:
+            [text appendFormat:@"%c", c];
+        }
+    }
+    [text appendString:@"\""];
+    return text;
 }
 
 - (void)onReadyStateChange:(NSDictionary*)info
 {
     NSString* js = [NSString stringWithFormat:
                     @"poplar.readyState = %@;\n"
-                    "poplar.responseText = \"%@\";\n"
-                    "poplar.responseXML = \"%@\";\n"
+                    "poplar.responseText = %@;\n"
                     "poplar.status = %@;\n"
-                    "poplar.statusText = \"%@\";\n"
+                    "poplar.statusText = %@;\n"
                     "poplar.onreadystatechange();\n",
                     info[@"readyState"],
                     [self escapeJsString:info[@"responseText"]],
-                    [self escapeJsString:info[@"responseXML"]],
                     info[@"status"],
                     [self escapeJsString:info[@"statusText"]]];
     
     [self.commandDelegate evalJs:js];
-    
+    /*
     if (_voipConnection.readyState == 4) {
         UILocalNotification* notification = [[UILocalNotification alloc] init];
         [notification setUserInfo:@{ @"Poplar" : @"Notification" }];
@@ -256,6 +269,7 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
         notification.soundName = UILocalNotificationDefaultSoundName;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
+     */
 }
 
 @end
