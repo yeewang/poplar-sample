@@ -222,8 +222,9 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
 {
     if ([js isKindOfClass:[NSNull class]])
         js = @"";
-    
-    NSMutableString* text = [[NSMutableString alloc] initWithCapacity:[js length] * 2];
+
+    NSUInteger length = [js length];
+    NSMutableString* text = [[NSMutableString alloc] initWithCapacity:(length + (length >> 3))];
     [text appendString:@"\""];
     for (NSUInteger i = 0; i < [js length]; i++) {
         unichar c = [js characterAtIndex:i];
@@ -232,10 +233,10 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
             [text appendString:@"\\\""];
             break;
         case '\r':
-            [text appendString:@"\\\r"];
+            [text appendString:@"\\r"];
             break;
         case '\n':
-            [text appendString:@"\\\n"];
+            [text appendString:@"\\n"];
             break;
         default:
             [text appendFormat:@"%c", c];
