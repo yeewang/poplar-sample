@@ -238,6 +238,9 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
         case '\n':
             [text appendString:@"\\n"];
             break;
+        case '\\':
+            [text appendString:@"\\\\"];
+            break;
         default:
             [text appendFormat:@"%c", c];
         }
