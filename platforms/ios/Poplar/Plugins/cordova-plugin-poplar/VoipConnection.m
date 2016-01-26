@@ -40,6 +40,7 @@
 {
     self = [super init];
     if (self != nil) {
+#if 0
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         [self.locationManager requestAlwaysAuthorization];
@@ -48,8 +49,9 @@
         
         self.locationManager.distanceFilter = 100000;
         self.locationManager.desiredAccuracy = 100000; // > kCLLocationAccuracyThreeKilometers;
+        
         self.needLocationUpdate = NO;
-
+#endif
         [self resetDefault];
     }
     return self;
@@ -238,17 +240,21 @@
 
 - (void)startUpdatingLocation
 {
+#if 0
     [_locationManager stopUpdatingLocation];
     _locationManager.distanceFilter = 100000;
     _locationManager.desiredAccuracy = 100000; // > kCLLocationAccuracyThreeKilometers;
     _locationManager.pausesLocationUpdatesAutomatically = NO;
     _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
     [_locationManager startUpdatingLocation];
+#endif
 }
 
 - (void)stopUpdatingLocation
 {
+#if 0
     [_locationManager stopUpdatingLocation];
+#endif
 }
 
 #pragma mark - delegate
