@@ -49,13 +49,13 @@ var app = {
             message = message.concat(
                 "readyState:", poplar.readyState.toString(), "<br>",
                 "responseText:", poplar.responseText.toString(), "<br>",
-                "responseXML:", poplar.responseXML.toString(), "<br>",
                 "status:", poplar.status.toString(), "<br>",
                 "statusText:", poplar.statusText.toString(), "<br>");
 
             document.write(message);
+            // alert(message);
 
-            if (poplar.readyState === 4) {
+            if (poplar.readyState === 4 || poplar.readyState === -1) {
                 document.write("<font size=5>Send next request</font><br>");
                 poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=10', true);
                 poplar.send(success, failure);
@@ -79,11 +79,11 @@ var app = {
         // String url;
         // boolean async;
         // String username; String password;
-        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=30', true);
+        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=5', true);
         //poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_close.call', true);
         //poplar.open(success, failure, 'GET', 'http://www.163.com/', true);
         poplar.setRequestHeader(success, failure, "x-allow", "demo-xml");
-        poplar.setTimeout(success, failure, 60);
+        poplar.setTimeout(success, failure, 10);
         poplar.send(success, failure);
     },
     // Update DOM on a Received Event

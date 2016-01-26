@@ -25,6 +25,7 @@
 @interface CDVPoplar () {
 }
 @property (nonatomic, strong) VoipConnection* voipConnection;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier bgTask;
 @end
 
 @implementation CDVPoplar
@@ -54,22 +55,15 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
 {
     NSNotificationCenter* listener = [NSNotificationCenter defaultCenter];
     
-    if (&UIApplicationDidEnterBackgroundNotification && &UIApplicationWillEnterForegroundNotification) {
-        
-        [listener addObserver:self
-                     selector:@selector(applicationDidEnterBackground:)
-                         name:UIApplicationDidEnterBackgroundNotification
-                       object:nil];
-        
-        [listener addObserver:self
-                     selector:@selector(applicationWillEnterForeground:)
-                         name:UIApplicationWillEnterForegroundNotification
-                       object:nil];
-    }
-    else {
-        
-        //Do something else
-    }
+    [listener addObserver:self
+                 selector:@selector(applicationDidEnterBackground:)
+                     name:UIApplicationDidEnterBackgroundNotification
+                   object:nil];
+    
+    [listener addObserver:self
+                 selector:@selector(applicationWillEnterForeground:)
+                     name:UIApplicationWillEnterForegroundNotification
+                   object:nil];
 }
 
 - (void)applicationDidEnterBackground:(NSNotification*)notification
@@ -84,6 +78,20 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
     }
     else {
         NSLog(@"VOIP backgrounding NOT accepted for the App");
+    }
+    
+    if ([_voipConnection needLocationUpdate]) {        
+        UIApplication* app = [UIApplication sharedApplication];
+        
+        _bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+            [app endBackgroundTask:_bgTask];
+            _bgTask = UIBackgroundTaskInvalid;
+        }];
+        
+        [_voipConnection startUpdatingLocation];
+    }
+    else {
+        [_voipConnection stopUpdatingLocation];
     }
 }
 
@@ -157,7 +165,7 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
 - (void)getAllResponseHeaders:(CDVInvokedUrlCommand*)command
 {
     NSString* allHeaders = [_voipConnection getAllResponseHeaders];
-    ;
+
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:allHeaders];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
@@ -229,20 +237,20 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
     for (NSUInteger i = 0; i < [js length]; i++) {
         unichar c = [js characterAtIndex:i];
         switch (c) {
-        case '"':
-            [text appendString:@"\\\""];
-            break;
-        case '\r':
-            [text appendString:@"\\r"];
-            break;
-        case '\n':
-            [text appendString:@"\\n"];
-            break;
-        case '\\':
-            [text appendString:@"\\\\"];
-            break;
-        default:
-            [text appendFormat:@"%c", c];
+            case '"':
+                [text appendString:@"\\\""];
+                break;
+            case '\r':
+                [text appendString:@"\\r"];
+                break;
+            case '\n':
+                [text appendString:@"\\n"];
+                break;
+            case '\\':
+                [text appendString:@"\\\\"];
+                break;
+            default:
+                [text appendFormat:@"%c", c];
         }
     }
     [text appendString:@"\""];
@@ -263,17 +271,6 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
                     [self escapeJsString:info[@"statusText"]]];
     
     [self.commandDelegate evalJs:js];
-    /*
-    if (_voipConnection.readyState == 4) {
-        UILocalNotification* notification = [[UILocalNotification alloc] init];
-        [notification setUserInfo:@{ @"Poplar" : @"Notification" }];
-        notification.fireDate = [NSDate date];
-        notification.alertBody = _voipConnection.responseText;
-        notification.timeZone = [NSTimeZone defaultTimeZone];
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    }
-     */
 }
 
 @end
