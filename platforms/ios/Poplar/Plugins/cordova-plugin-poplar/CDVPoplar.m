@@ -79,20 +79,6 @@ static NSString* const kAPPBackgroundEventWillEnterForeground = @"willEnterForeg
     else {
         NSLog(@"VOIP backgrounding NOT accepted for the App");
     }
-    
-    if ([_voipConnection needLocationUpdate]) {        
-        UIApplication* app = [UIApplication sharedApplication];
-        
-        _bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-            [app endBackgroundTask:_bgTask];
-            _bgTask = UIBackgroundTaskInvalid;
-        }];
-        
-        [_voipConnection startUpdatingLocation];
-    }
-    else {
-        [_voipConnection stopUpdatingLocation];
-    }
 }
 
 - (void)applicationWillEnterForeground:(NSNotification*)notification

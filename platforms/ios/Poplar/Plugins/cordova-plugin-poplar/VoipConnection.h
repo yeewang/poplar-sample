@@ -23,8 +23,6 @@
 - (NSString *)getResponseHeader:(NSString *)header;
 - (void)abort;
 - (void)setTimeout:(NSTimeInterval)timeInterval;
-- (void)startUpdatingLocation;
-- (void)stopUpdatingLocation;
 
 @property (nonatomic, assign) id<VoipConnectionDelegate> delegate;
 @property (nonatomic, assign) short readyState;

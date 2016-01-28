@@ -6,10 +6,9 @@
 //
 //
 
-#import <CoreLocation/CoreLocation.h>
 #import "VoipConnection.h"
 
-@interface VoipConnection () <CLLocationManagerDelegate>
+@interface VoipConnection ()
 @property (nonatomic, strong) NSString* url;
 @property (nonatomic, assign) BOOL async;
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
@@ -17,9 +16,6 @@
 @property (nonatomic, strong) NSMutableURLRequest* request;
 @property (nonatomic, strong) NSURLSession* session;
 @property (nonatomic, strong) NSURLSessionDataTask* dataTask;
-
-@property (nonatomic, strong) CLLocationManager* locationManager;
-
 @end
 
 @implementation VoipConnection
@@ -157,13 +153,6 @@
                                                 }
                                             }
                                             
-                                            if (_needLocationUpdate) {
-                                                [self startUpdatingLocation];
-                                            }
-                                            else {
-                                                [self stopUpdatingLocation];
-                                            }
-                                            
                                             NSLog(@"Status code: %d\n", self.status);
                                             
                                             [self.delegate onReadyStateChange:[self encapsulate]];
@@ -236,47 +225,6 @@
                             @"status" : [NSNumber numberWithInt:self.status],
                             @"statusText" : self.statusText == nil ? [NSNull null] : self.statusText };
     return info;
-}
-
-- (void)startUpdatingLocation
-{
-#if 0
-    [_locationManager stopUpdatingLocation];
-    _locationManager.distanceFilter = 100000;
-    _locationManager.desiredAccuracy = 100000; // > kCLLocationAccuracyThreeKilometers;
-    _locationManager.pausesLocationUpdatesAutomatically = NO;
-    _locationManager.activityType = CLActivityTypeAutomotiveNavigation;
-    [_locationManager startUpdatingLocation];
-#endif
-}
-
-- (void)stopUpdatingLocation
-{
-#if 0
-    [_locationManager stopUpdatingLocation];
-#endif
-}
-
-#pragma mark - delegate
-
-- (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)manager
-{
-    NSLog(@"locationManagerDidPauseLocationUpdates");
-}
-
-- (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)manager
-{
-    NSLog(@"locationManagerDidResumeLocationUpdates");
-}
-
--(void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    //tell the centralManager that you want to deferred this updatedLocation
-    [self.locationManager allowDeferredLocationUpdatesUntilTraveled:CLLocationDistanceMax timeout:10];
-}
-
-- (void) locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error
-{
 }
 
 @end
