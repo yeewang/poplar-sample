@@ -36,18 +36,6 @@
 {
     self = [super init];
     if (self != nil) {
-#if 0
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        [self.locationManager requestAlwaysAuthorization];
-        self.locationManager.pausesLocationUpdatesAutomatically = NO;
-        self.locationManager.allowsBackgroundLocationUpdates = YES;
-        
-        self.locationManager.distanceFilter = 100000;
-        self.locationManager.desiredAccuracy = 100000; // > kCLLocationAccuracyThreeKilometers;
-        
-        self.needLocationUpdate = NO;
-#endif
         [self resetDefault];
     }
     return self;
