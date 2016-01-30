@@ -15,6 +15,6 @@
 
 @required
 
-- (void)onReadyStateChange:(VoipConnection *)connection;
+- (void)onReadyStateChange:(NSDictionary *)info;
 
 @end

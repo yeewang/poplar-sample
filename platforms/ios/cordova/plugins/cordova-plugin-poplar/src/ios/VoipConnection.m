@@ -9,30 +9,31 @@
 #import "VoipConnection.h"
 
 @interface VoipConnection ()
-@property (nonatomic, strong) NSString * url;
+@property (nonatomic, strong) NSString* url;
 @property (nonatomic, assign) BOOL async;
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
-@property (nonatomic, strong) NSString * requestHeaders;
-@property (nonatomic, strong) NSMutableURLRequest *request;
-@property (nonatomic, strong) NSURLSession *session;
-@property (nonatomic, strong) NSURLSessionDataTask *dataTask;
-
+@property (nonatomic, strong) NSString* requestHeaders;
+@property (nonatomic, strong) NSMutableURLRequest* request;
+@property (nonatomic, strong) NSURLSession* session;
+@property (nonatomic, strong) NSURLSessionDataTask* dataTask;
 @end
 
 @implementation VoipConnection
 
-+ (VoipConnection *)connection
++ (VoipConnection*)connection
 {
-    static VoipConnection * conn = nil;
-    @synchronized(conn) {
-        if (conn == nil)
+    static VoipConnection* conn = nil;
+    @synchronized(conn)
+    {
+        if (conn == nil) {
             conn = [[VoipConnection alloc] init];
+        }
     }
     return conn;
 }
 
-- (VoipConnection *)init
-{    
+- (VoipConnection*)init
+{
     self = [super init];
     if (self != nil) {
         [self resetDefault];
@@ -50,11 +51,11 @@
     _statusText = nil;
 }
 
-- (void)open:(NSString *)method
-         url:(NSString *)url
+- (void)open:(NSString*)method
+         url:(NSString*)url
        async:(BOOL)async
-    username:(NSString *)username
-    password:(NSString *)password
+    username:(NSString*)username
+    password:(NSString*)password
 {
     if (_readyState == 0 || _readyState == 4) {
         self.requestHeaders = nil;
@@ -82,15 +83,16 @@
         NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         NSDictionary* headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
         [_request setAllHTTPHeaderFields:headers];
-
+        
         // [_request setValue:@"VALUE" forHTTPHeaderField:@"User-Agent"];
+        [_request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         
         if (username != nil && password != nil) {
             //[[_manager requestSerializer] setAuthorizationHeaderFieldWithUsername:username password:password];
         }
         
         _readyState = 1;
-        [self.delegate onReadyStateChange:self];
+        [self.delegate onReadyStateChange:[self encapsulate]];
     }
 }
 
@@ -98,25 +100,29 @@
 {
     if (_readyState == 1) {
         if (([[_request HTTPMethod] isEqualToString:@"POST"] ||
-             [[_request HTTPMethod] isEqualToString:@"PUT"]) &&
-            body != nil) {
-            NSString *text = [body description];
+             [[_request HTTPMethod] isEqualToString:@"PUT"])
+            && body != nil) {
+            NSString* text = [body description];
             [self.request setHTTPBody:[text dataUsingEncoding:(NSUTF8StringEncoding)]];
         }
         
         _readyState = 2;
-        [self.delegate onReadyStateChange:self];
+        [self.delegate onReadyStateChange:[self encapsulate]];
         
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         self.session = [NSURLSession sharedSession];
         self.dataTask = [self.session dataTaskWithRequest:_request
-                                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                        completionHandler:^(NSData* data, NSURLResponse* response, NSError* error) {
                                             NSLog(@"Received %lld bytes content\n", [response expectedContentLength]);
                                             
-                                            NSString* s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                            self.responseText = s;
+                                            _readyState = 4;
+                                            
+                                            self.responseText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                             self.responseXML = nil;
-                                            self.status = [(NSHTTPURLResponse *)response statusCode];
+                                            self.status = [(NSHTTPURLResponse*)response statusCode];
+                                            
+                                            self.needLocationUpdate = NO;
+                                            
                                             if (self.status == 200) {
                                                 self.statusText = @"OK";
                                             }
@@ -124,11 +130,20 @@
                                                 self.statusText = @"Not Found";
                                             }
                                             else {
-                                                self.statusText = @"Unknown";
+                                                self.needLocationUpdate = YES;
+                                                
+                                                if ([error code] == kCFURLErrorTimedOut) {
+                                                    self.status = -1;
+                                                    self.statusText = @"Timeout";
+                                                }
+                                                else {
+                                                    self.statusText = @"Unknown";
+                                                }
                                             }
                                             
-                                            _readyState = 4;
-                                            [self.delegate onReadyStateChange:self];
+                                            NSLog(@"Status code: %d\n", self.status);
+                                            
+                                            [self.delegate onReadyStateChange:[self encapsulate]];
                                             dispatch_semaphore_signal(semaphore);
                                             
                                             // Continue to perform send HTTP GET
@@ -145,28 +160,28 @@
     }
 }
 
-- (void)setRequestHeaderWithName:(NSString *) name value:(NSString *) value
+- (void)setRequestHeaderWithName:(NSString*)name value:(NSString*)value
 {
     if (_readyState == 1) {
         [_request setValue:value forHTTPHeaderField:name];
     }
 }
 
-- (NSString *)getAllResponseHeaders
+- (NSString*)getAllResponseHeaders
 {
     if (_readyState < 3) {
         return nil;
     }
     
-    NSMutableString *header = [[NSMutableString alloc] init];
-    NSDictionary *headers = [_request allHTTPHeaderFields];
-    for (NSString *key in headers) {
+    NSMutableString* header = [[NSMutableString alloc] init];
+    NSDictionary* headers = [_request allHTTPHeaderFields];
+    for (NSString* key in headers) {
         [header appendFormat:@"%@:%@\r\n", key, headers[key]];
     }
     return header;
 }
 
-- (NSString *)getResponseHeader:(NSString *)header
+- (NSString*)getResponseHeader:(NSString*)header
 {
     if (_readyState < 3) {
         return nil;
@@ -179,7 +194,7 @@
 {
     [self.dataTask cancel];
     _readyState = 0;
-    [self.delegate onReadyStateChange:self];
+    [self.delegate onReadyStateChange:[self encapsulate]];
 }
 
 - (void)setTimeout:(NSTimeInterval)timeoutInterval
@@ -188,6 +203,16 @@
         _timeoutInterval = timeoutInterval;
         [self.request setTimeoutInterval:timeoutInterval];
     }
+}
+
+- (NSDictionary*)encapsulate
+{
+    NSDictionary* info = @{ @"readyState" : [NSNumber numberWithInt:self.readyState],
+                            @"responseText" : self.responseText == nil ? [NSNull null] : self.responseText,
+                            @"responseXML" : self.responseXML == nil ? [NSNull null] : self.responseXML,
+                            @"status" : [NSNumber numberWithInt:self.status],
+                            @"statusText" : self.statusText == nil ? [NSNull null] : self.statusText };
+    return info;
 }
 
 @end

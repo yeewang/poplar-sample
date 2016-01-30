@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -25,7 +24,6 @@
 		30B4F30219D5E07200D9F7D8 /* Default-Landscape-736h.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B4F2FF19D5E07200D9F7D8 /* Default-Landscape-736h.png */; };
 		30C1856619D5FC0A00212699 /* icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C1856519D5FC0A00212699 /* icon-60@3x.png */; };
 		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
-		4688016361F04D1CA559568D /* CDVPoplar.m in Sources */ = {isa = PBXBuildFile; fileRef = E7664036F0244DD196A15ADF /* CDVPoplar.m */; };
 		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
 		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
 		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
@@ -42,7 +40,8 @@
 		9D2BA1731C44105C007DFC9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		9DC861E71C5677AA00468EC7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC861E61C5677AA00468EC7 /* CoreLocation.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		E87381A81ADE42D18223AD4C /* VoipConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E953CB4C71049709204544E /* VoipConnection.m */; };
+		0D12E275CF4441B891EAA4DE /* CDVPoplar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7521EAE0D2764FA29F6B5975 /* CDVPoplar.m */; };
+		2D6C144A46A34605A7B08F5A /* VoipConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = AD199DC10D72405BA157BBB6 /* VoipConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0756B0FBB4884B60AB6AC752 /* CDVPoplar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVPoplar.h; path = "cordova-plugin-poplar/CDVPoplar.h"; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Poplar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poplar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +88,6 @@
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Poplar-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Poplar-Prefix.pch"; sourceTree = "<group>"; };
-		4C9F3AA5F6E841B1AF5E3267 /* VoipConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoipConnectionDelegate.h; path = "cordova-plugin-poplar/VoipConnectionDelegate.h"; sourceTree = "<group>"; };
-		4EF63115A7954240956FEE45 /* VoipConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoipConnection.h; path = "cordova-plugin-poplar/VoipConnection.h"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
@@ -103,7 +99,6 @@
 		7E7966DB1810823500FA85AD /* icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76@2x.png"; sourceTree = "<group>"; };
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
-		7E953CB4C71049709204544E /* VoipConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoipConnection.m; path = "cordova-plugin-poplar/VoipConnection.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Poplar-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Poplar-Info.plist"; path = "../Poplar-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		9D2BA1561C44094A007DFC9B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9D2BA15A1C440C77007DFC9B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -115,10 +110,14 @@
 		9D2BA16B1C440FA8007DFC9B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9DC861E61C5677AA00468EC7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		E7664036F0244DD196A15ADF /* CDVPoplar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVPoplar.m; path = "cordova-plugin-poplar/CDVPoplar.m"; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = Poplar/config.xml; sourceTree = "<group>"; };
+		7521EAE0D2764FA29F6B5975 /* CDVPoplar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVPoplar.m"; path = "cordova-plugin-poplar/CDVPoplar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		AD199DC10D72405BA157BBB6 /* VoipConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "VoipConnection.m"; path = "cordova-plugin-poplar/VoipConnection.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		7DCA035F9DEF4088BF9E8C3B /* CDVPoplar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVPoplar.h"; path = "cordova-plugin-poplar/CDVPoplar.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		F05260E3614048EFA51E1C48 /* VoipConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VoipConnection.h"; path = "cordova-plugin-poplar/VoipConnection.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		1FD7E802D43D40EFA5FC9D40 /* VoipConnectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VoipConnectionDelegate.h"; path = "cordova-plugin-poplar/VoipConnectionDelegate.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,11 +225,11 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				E7664036F0244DD196A15ADF /* CDVPoplar.m */,
-				7E953CB4C71049709204544E /* VoipConnection.m */,
-				0756B0FBB4884B60AB6AC752 /* CDVPoplar.h */,
-				4EF63115A7954240956FEE45 /* VoipConnection.h */,
-				4C9F3AA5F6E841B1AF5E3267 /* VoipConnectionDelegate.h */,
+				7521EAE0D2764FA29F6B5975 /* CDVPoplar.m */,
+				AD199DC10D72405BA157BBB6 /* VoipConnection.m */,
+				7DCA035F9DEF4088BF9E8C3B /* CDVPoplar.h */,
+				F05260E3614048EFA51E1C48 /* VoipConnection.h */,
+				1FD7E802D43D40EFA5FC9D40 /* VoipConnectionDelegate.h */,
 			);
 			name = Plugins;
 			path = Poplar/Plugins;
@@ -424,8 +423,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				4688016361F04D1CA559568D /* CDVPoplar.m in Sources */,
-				E87381A81ADE42D18223AD4C /* VoipConnection.m in Sources */,
+				0D12E275CF4441B891EAA4DE /* CDVPoplar.m in Sources */,
+				2D6C144A46A34605A7B08F5A /* VoipConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
