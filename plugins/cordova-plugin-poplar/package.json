@@ -1,0 +1,66 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+        "spec": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+        "type": "directory"
+      },
+      "/Sources/devel/poplar/poplar"
+    ]
+  ],
+  "_from": "../plugins/cordova-plugin-poplar",
+  "_id": "cordova-plugin-poplar@0.1.0-dev",
+  "_inCache": true,
+  "_location": "/cordova-plugin-poplar",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+    "spec": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../plugins/cordova-plugin-poplar",
+  "_shasum": "3dc3775e40181add90f8852f2dfbdc0539e07aab",
+  "_shrinkwrap": null,
+  "_spec": "/Sources/devel/poplar/plugins/cordova-plugin-poplar",
+  "_where": "/Sources/devel/poplar/poplar",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "cordova": {
+    "id": "cordova-plugin-poplar",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Poplar Plugin",
+  "devDependencies": {},
+  "gitHead": "185286249fd6fe59377bef21d31bb08d6283e106",
+  "keywords": [
+    "cordova",
+    "poplar",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "Apache 2.0",
+  "name": "cordova-plugin-poplar",
+  "optionalDependencies": {},
+  "readme": "# cordova-plugin-poplar\nCordova-plugin-poplar is a custom push client for iOS in the cordova platform. \nIt uses iOS VoIP background execution to wake up iOS devices, and send a notification to them. <br>\nCordova-plugin-poplar provides the XMLHttpRequest like API for easy to use.\n\n# Getting started\n### Checkout cordova-plugin-poplar source code to your local folder\n> git clone https://github.com/yeewang/cordova-plugin-poplar.git cordova-plugin-poplar\n\n### Install cordova-plugin-poplar plugin to your cordova project.\n> plugman install --platform ios --project $MY_CORDOVA_PRROJECT/platforms/ios/ --plugin cordova-plugin-poplar\n\n### Modify the project root html file to insert the following line:\n    <script type=\"text/javascript\" src=\"poplar.js\"></script>\n\n## Rebuild your cordova project.\n> cordova build\n\n# APIs\n###Properties:\n    poplar.readyState;\nThe state of the HTTP request. The meaning is the same as the readyState in the XMLHttpRequest. Please refer some XMLHttpRequest docs.\n<table>\n\t<td>State</td><td>Name</td>\n    <tr>\n    <td>0</td><td>Uninitialized</td></tr>\n    <td>1</td><td>Open</td></tr>\n    <td>2</td><td>Sent</td></tr>\n    <td>3</td><td>Receiving</td></tr>\n    <td>4</td><td>Loaded</td></tr>\n</table>\n    poplar.responseText;\nThe body of the response. Please refer some XMLHttpRequest docs.\n    \n    poplar.responseXML;\nThe response to the request, parsed as XML. This property always returns null.\n\n    poplar.status;\nThe HTTP request status code returned by the server. For example, 200 for success, 404 for \"Not Found\", -1 for request timeout, 0 for other errors.\n    \n    poplar.statusText;\nThe HTTP request status text returned by the server. For example, it is \"OK\" when status is 200, \"Not Found\" when status is 404, \"Timeout\" when status is -1, and other errors are \"Unknown\" when status is 0.\n    \n###Event:\n    poplar.onreadystatechange\nEvent-handler function invoked each time the readyState property changes.\n\n###Functions:\n\tpoplar.abort(function success, function failure);\nThis method resets the XMLHttpRequest object to a readyState of 0 and aborts any pending network activity. \t\n\n\tpoplar.getAllResponseHeaders(\n\t            function success(allResponseHeaders),\n\t            function failure);\n\t            \nIf readyState is less than 3, this method returns null. Otherwise, it returns all HTTP response headers.\n\t            \n\tpoplar.getResponseHeader(\n\t            function success(responseHeaders),\n\t            function failure,\n\t            string headerText);\nThe value of the named HTTP response header, or the empty string if no such header was received or if readyState is less than 3.\n\t            \n\tpoplar.setRequestHeader(function success, function failure, string name, string value);\nsetRequestHeader( ) specifies an HTTP request header that should be included in the request issued by a subsequent call to send( ). This method may be called only when readyState is 1, after a call to open( ) but before a call to send( ).\t\n    \n    poplar.open(function success, function failure, method, url, async, username, password);\nThis method initializes request parameters for later use by the send( ) method. It sets readyState to 1, and clears all of state to default(Refer to XMLHttpRequest.open), except timeout(Refer to poplar.setTimeout()).\n\t\n\tpoplar.send(function success, function failure);\nThis method causes an HTTP request to be issued. But if the readyState does not equal 1, it will do nothing.\n\t\n\tpoplar.setTimeout(function success, function failure, integer timeout);\nThe method set the timeout value(The unit is in second) for the HTTP request. In HTTP requesting, if timeout time reached, but HTTP request doet not return, an abort action will trigger(Refer to \"poplar.status\" property).\n\n\n# Usage examples\n\t\n\tpoplar.onreadystatechange = function() {\n\t    var message = \"<font size=5>onreadystatechange</font><br>\";\n\t    message = message.concat(\n\t        \"readyState:\", poplar.readyState.toString(), \"<br>\",\n\t        \"responseText:\", poplar.responseText.toString(), \"<br>\",\n\t        \"responseXML:\", poplar.responseXML.toString(), \"<br>\",\n\t        \"status:\", poplar.status.toString(), \"<br>\",\n\t        \"statusText:\", poplar.statusText.toString(), \"<br>\");\n\t        \n\t    document.write(message);\n\t\n\t    if (poplar.readyState === 4) {\n\t        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=30', true);\n\t        poplar.send(success, failure);\n\t    }\n\t};\n\t\n\tpoplar.abort(success, failure);\n\t\n\tpoplar.getAllResponseHeaders(\n\t    function(allResponseHeaders) {\n\t        },\n\t        failure);\n\t\n\tpoplar.getResponseHeader(\n\t    function(responseHeaders) {\n\t        },\n\t        failure,\n\t        'header');\n\t\n    poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=10', true);\n    poplar.setRequestHeader(success, failure, \"x-allow\", \"demo-xml\");\n    poplar.setTimeout(success, failure, 60);\n    poplar.send(success, failure);\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git"
+  },
+  "version": "0.1.0-dev"
+}

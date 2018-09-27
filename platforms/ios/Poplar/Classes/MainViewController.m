@@ -27,9 +27,6 @@
 
 #import "MainViewController.h"
 
-@interface MainViewController ()
-@end
-
 @implementation MainViewController
 
 - (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
@@ -87,12 +84,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
-}
-
 /* Comment out the block below to over-ride */
 
 /*
@@ -100,35 +91,25 @@
 {
     return[super newCordovaViewWithFrame:bounds];
 }
-*/
 
-#pragma mark UIWebDelegate implementation
-
-- (void)webViewDidFinishLoad:(UIWebView*)theWebView
+// CB-12098
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000  
+- (NSUInteger)supportedInterfaceOrientations
+#else  
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
 {
-    // Black base color for background matches the native apps
-    theWebView.backgroundColor = [UIColor blackColor];
-
-    [super webViewDidFinishLoad:theWebView];
+    return [super supportedInterfaceOrientations];
 }
 
-/* Comment out the block below to over-ride */
-
-/*
-
-- (void) webViewDidStartLoad:(UIWebView*)theWebView
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
 {
-    return [super webViewDidStartLoad:theWebView];
+    return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-- (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
+- (BOOL)shouldAutorotate 
 {
-    return [super webView:theWebView didFailLoadWithError:error];
-}
-
-- (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
+    return [super shouldAutorotate];
 }
 */
 

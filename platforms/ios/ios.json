@@ -1,42 +1,43 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
-    },
-    "config_munge": {
-        "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"Poplar\"><param name=\"ios-package\" value=\"CDVPoplar\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"Poplar\"><param name=\"ios-package\" value=\"CDVPoplar\" /></feature>",
+              "count": 1
             }
+          ]
         }
-    },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.botnodes.poplar"
-        },
-        "cordova-plugin-poplar": {
-            "PACKAGE_NAME": "com.botnodes.poplar"
-        }
-    },
-    "dependent_plugins": {},
-    "modules": [
-        {
-            "file": "plugins/cordova-plugin-poplar/www/poplar.js",
-            "id": "cordova-plugin-poplar.poplar",
-            "pluginId": "cordova-plugin-poplar",
-            "clobbers": [
-                "poplar"
-            ]
-        }
-    ],
-    "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.0"
+      }
     }
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.botnodes.poplar"
+    },
+    "cordova-plugin-poplar": {
+      "PACKAGE_NAME": "com.botnodes.poplar"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "cordova-plugin-poplar.poplar",
+      "file": "plugins/cordova-plugin-poplar/www/poplar.js",
+      "pluginId": "cordova-plugin-poplar",
+      "clobbers": [
+        "poplar"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-whitelist": "1.2.0",
+    "cordova-plugin-poplar": "0.1.0-dev"
+  }
 }

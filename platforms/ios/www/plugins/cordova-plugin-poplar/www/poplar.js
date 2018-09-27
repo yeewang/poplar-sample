@@ -1,4 +1,5 @@
-cordova.define("cordova-plugin-poplar.poplar", function(require, exports, module) { /*
+cordova.define("cordova-plugin-poplar.poplar", function(require, exports, module) {
+/*
 *
 * Licensed to the Apache Software Foundation (ASF) under one
 * or more contributor license agreements.  See the NOTICE file
@@ -167,7 +168,7 @@ Poplar.prototype.open = function(successCallback, errorCallback, method, url, as
     };
 
     argscheck.checkArgs('fF', 'Poplar.open', arguments);
-    options = {'method': method, 'url': url, 'async': async, 'username': username,  'password': password};
+    options = {'method': '' + method, 'url': url, 'async': async, 'username': '' + username,  'password': '' + password};
     exec(cleanHandlersAndPassThrough, errorCallback, "Poplar", "open", [options]);
 };
 
@@ -202,7 +203,7 @@ Poplar.prototype.setRequestHeader = function(successCallback, errorCallback, nam
     }
 
     argscheck.checkArgs('fF', 'Poplar.setRequestHeader', arguments);
-    options = {'name' :name, 'value': value};
+    options = {'name' : '' + name, 'value': '' + value};
     exec(successCallback, errorCallback, "Poplar", "setRequestHeader", [options]);
 };
 

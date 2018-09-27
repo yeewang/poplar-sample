@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -36,55 +35,6 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         
-        var success = function(message) {
-            document.write("<font size=5>Result:</font>" + message + "<br>");
-        }
-
-        var failure = function() {
-            alert("Error calling Poplar Plugin");
-        }
-        
-        poplar.onreadystatechange = function() {
-            var message = "<font size=5>onreadystatechange</font><br>";
-            message = message.concat(
-                "readyState:", poplar.readyState.toString(), "<br>",
-                "responseText:", poplar.responseText.toString(), "<br>",
-                "status:", poplar.status.toString(), "<br>",
-                "statusText:", poplar.statusText.toString(), "<br>");
-
-            document.write(message);
-            // alert(message);
-
-            if (poplar.readyState === 4 || poplar.readyState === -1) {
-                document.write("<font size=5>Send next request</font><br>");
-                poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=10', true);
-                poplar.send(success, failure);
-            }
-        };
-
-        poplar.abort(success, failure);
-
-        poplar.getAllResponseHeaders(
-            function(allResponseHeaders) {
-            },
-            failure);
-
-        poplar.getResponseHeader(
-            function(responseHeaders) {
-            },
-            failure,
-            'header');
-
-        // String method;
-        // String url;
-        // boolean async;
-        // String username; String password;
-        poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_deferred_return.call?delay=5', true);
-        //poplar.open(success, failure, 'GET', 'http://192.168.1.200:800/test_close.call', true);
-        //poplar.open(success, failure, 'GET', 'http://www.163.com/', true);
-        poplar.setRequestHeader(success, failure, "x-allow", "demo-xml");
-        poplar.setTimeout(success, failure, 10);
-        poplar.send(success, failure);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
